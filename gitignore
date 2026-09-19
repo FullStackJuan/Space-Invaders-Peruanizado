@@ -1,0 +1,124 @@
+# ============================
+# Java
+# ============================
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+replay_pid*
+
+# ============================
+# Gradle
+# ============================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+!**/src/main/**/build/
+!**/src/test/**/build/
+out/
+
+# ============================
+# Maven
+# ============================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ============================
+# IntelliJ IDEA
+# ============================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# ============================
+# Eclipse
+# ============================
+.classpath
+.project
+.settings/
+bin/
+.metadata/
+.recommenders/
+
+# ============================
+# NetBeans
+# ============================
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# ============================
+# VS Code
+# ============================
+.vscode/
+*.code-workspace
+
+# ============================
+# LibGDX (si aplica)
+# ============================
+android/build/
+core/build/
+desktop/build/
+html/build/
+ios/build/
+*.apk
+*.aab
+android/local.properties
+
+# ============================
+# Archivos de configuración local / secretos
+# ============================
+local.properties
+*.env
+.env.local
+secrets.properties
+config.local.*
+*.key
+*.pem
+*.p12
+*.jks
+!debug.keystore
+
+# ============================
+# Sistema Operativo
+# ============================
+# Linux
+*~
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ============================
+# Otros
+# ============================
+*.tmp
+*.bak
+*.swp
+*.orig
