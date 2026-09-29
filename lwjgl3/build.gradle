@@ -1,0 +1,46 @@
+apply plugin: 'application'
+
+def carpetaAssets = rootProject.file('assets')
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+}
+
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == 'org.lwjgl') {
+            useVersion '3.3.6'
+        }
+    }
+}
+
+application {
+    mainClass = 'com.paloma.Lanzador'
+}
+
+sourceSets.main.resources.srcDirs += [carpetaAssets]
+
+tasks.named('run', JavaExec) {
+    workingDir = carpetaAssets
+    ignoreExitValue = true
+    jvmArgs '--enable-native-access=ALL-UNNAMED'
+    if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        jvmArgs '-XstartOnFirstThread'
+    }
+}
+
+tasks.register('jarJuego', Jar) {
+    group = 'build'
+    description = 'Genera un .jar ejecutable con todo incluido.'
+    archiveFileName = 'LaVenganzaDeLaPaloma.jar'
+    destinationDirectory = rootProject.layout.buildDirectory.dir('dist')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Main-Class': application.mainClass, 'Enable-Native-Access': 'ALL-UNNAMED'
+    }
+    dependsOn configurations.runtimeClasspath
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
