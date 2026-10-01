@@ -1,5 +1,5 @@
 package com.paloma;
-
+//Prepara la base del juego. Importa las librerías gráficas y de utilidades necesarias de LibGDX y del propio proyecto
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -61,7 +61,9 @@ public class JuegoPaloma extends ApplicationAdapter {
     private BitmapFont fuenteMediana;
     private BitmapFont fuentePequena;
     private final GlyphLayout medidor = new GlyphLayout();
-
+    //Fin del primer bloque
+    //Se ejecuta una vez SOLO al arrancar el, carga memoria, configura la "camara" e instancia el motor de dibujo
+    //Funciona mediante bucles para detectar si faltan assets y mandar un error de no encontrar alguno
     @Override
     public void create() {
         ultimaAparicion = TimeUtils.millis();
@@ -125,7 +127,7 @@ public class JuegoPaloma extends ApplicationAdapter {
             }
         });
     }
-
+    //Gestion de eventos y estados (pausa, mute disparo)
     private void procesarEvento(int tecla, boolean presionada) {
         if (presionada && tecla == Keys.P && !juegoTerminado) {
             alternarPausa();
@@ -147,7 +149,7 @@ public class JuegoPaloma extends ApplicationAdapter {
             }
         }
     }
-
+    //Detecta si el usuario presiona alguna tecla y determina si silenciar, pausar o disparar dentro del juego
     private void alternarPausa() {
         pausado = !pausado;
         if (pausado) {
@@ -199,7 +201,7 @@ public class JuegoPaloma extends ApplicationAdapter {
         bala.disparar(balaX, balaY);
         balas.add(bala);
     }
-
+    //Inicio de logica Madre
     @Override
     public void render() {
         if (juegoTerminado) {
@@ -212,7 +214,7 @@ public class JuegoPaloma extends ApplicationAdapter {
         }
         dibujar();
     }
-
+    //Render se encarga de actualizar y dibujar los elementos en pantalla a 60FPS
     private void actualizar() {
         long tiempoActual = TimeUtils.millis();
         int puntos = puntaje.getPuntos();
@@ -245,7 +247,8 @@ public class JuegoPaloma extends ApplicationAdapter {
         colisionBalaEnemigo();
         colisionEnemigoJugador();
     }
-
+    //Actualizar se encarga de gestionar la curva de dificultad, mientras mas puntos tenga el jugador
+    //Mayor sera la velocidad de los enemigos, dificultando asi la experiencia.
     private void colisionBalaEnemigo() {
         for (Bala bala : new ArrayList<>(balas)) {
             if (!bala.estaVisible()) {
@@ -265,7 +268,6 @@ public class JuegoPaloma extends ApplicationAdapter {
             }
         }
     }
-
     private void colisionEnemigoJugador() {
         for (Enemigo enemigo : new ArrayList<>(enemigos)) {
             if (enemigo.colisionaCon(jugador)) {
@@ -285,7 +287,8 @@ public class JuegoPaloma extends ApplicationAdapter {
             }
         }
     }
-
+    //Bloques que comparan coordenadas y determinan si hubo una "colision" para eliminar enemigos o quitar vida
+    //Al jugador
     private void dibujar() {
         ScreenUtils.clear(0f, 0f, 0f, 1f);
         pantalla.setProjectionMatrix(camara.combined);
@@ -341,10 +344,11 @@ public class JuegoPaloma extends ApplicationAdapter {
         medidor.setText(fuente, texto);
         fuente.draw(pantalla, medidor, ANCHO / 2f - (int) medidor.width / 2, y);
     }
-
+    //Bloque de renderizado. Transforma la logica matematica en recursos visuales para el jugador
     @Override
     public void dispose() {
         pantalla.dispose();
         Recursos.liberarTodo();
     }
 }
+//Se ejecuta cuando el jugador reinicia el juego y libera la memoria RAM

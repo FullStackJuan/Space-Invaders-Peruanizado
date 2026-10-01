@@ -1,3 +1,4 @@
+//Importación y declaracion de variables iniciales
 package com.paloma.juego;
 
 import com.badlogic.gdx.graphics.Color;
@@ -25,7 +26,7 @@ public class Enemigo extends Entidad {
         int direccion = MathUtils.randomBoolean() ? -1 : 1;
         this.velocidadX = direccion * velocidadBase * factorVelocidad;
     }
-
+    //Actualiza la posición y velocidad del enemigo, usa las constantes para saber su rango de movimiento
     @Override
     public void actualizar() {
         x += velocidadX;
@@ -40,12 +41,12 @@ public class Enemigo extends Entidad {
             y += pasoY;
         }
     }
-
+    //Reinicia la posicion del enemigo en la parte mas alta de la pantalla
     public void reiniciarPosicion() {
         x = MathUtils.random(0, Constantes.ANCHO_PANTALLA - ancho);
         y = MathUtils.random(50, 200);
     }
-
+    //Spawnea al enemigo en una posición del enemigo y lo dibuja en pantalla
     @Override
     public void dibujar(SpriteBatch pantalla) {
         if (imagen != null) {

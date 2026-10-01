@@ -1,7 +1,9 @@
+//Importación de recursos
 package com.paloma.juego;
 
 import com.badlogic.gdx.math.Rectangle;
-
+//Inicio de clase abstracta "Entidad" la cual sera clave para el manejo de distintas clases dentro del proyecto
+//Asignando valores de movimiento, velocidad, posicion
 public abstract class Entidad implements Dibujable {
 
     protected float x;

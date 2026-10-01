@@ -21,3 +21,4 @@ public class EfectoSonido {
         this.volumen = volumen;
     }
 }
+//Clase encargada de importar y gestionar el sonido dentro del juego

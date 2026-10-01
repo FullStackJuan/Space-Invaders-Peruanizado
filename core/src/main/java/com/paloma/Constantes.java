@@ -1,5 +1,5 @@
 package com.paloma;
-
+//esto maneja el tamaño en pantalla del juego
 public final class Constantes {
 
     public static final int ANCHO_PANTALLA = 1000;

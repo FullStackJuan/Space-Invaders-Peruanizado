@@ -1,3 +1,4 @@
+//Importación de recursos necesarios
 package com.paloma.juego;
 
 import com.badlogic.gdx.Input.Keys;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.paloma.Constantes;
 import com.paloma.util.EfectoSonido;
 import com.paloma.util.Recursos;
-
+//declaracion de la clase jugador y configuracion de su funcionamiento
 public class Jugador extends Entidad {
 
     private static final Color COLOR = new Color(1f, 0f, 0f, 1f);
@@ -28,7 +29,8 @@ public class Jugador extends Entidad {
     private boolean moverAbajo;
 
     private TextureRegion imagen;
-
+    //Metodo Constructor, provee tamaño, posicion, velocidad, color y dimensiones de la pantalla para
+    //Determinar su rango de movimiento
     public Jugador(EfectoSonido sonidoDisparo) {
         this(Constantes.ANCHO_PANTALLA, Constantes.ALTO_PANTALLA, 400, 300, 5, 80, 60, sonidoDisparo);
     }
@@ -51,7 +53,7 @@ public class Jugador extends Entidad {
             imagen = null;
         }
     }
-
+    //Detecta las entradas del usuario para darle movimiento en pantalla en funcion a la tecla presionada
     public void manejarMovimiento(int tecla, boolean presionada) {
         switch (tecla) {
             case Keys.A -> moverIzquierda = presionada;
@@ -61,7 +63,9 @@ public class Jugador extends Entidad {
             default -> { }
         }
     }
-
+    //Toma la detección de la tecla y va cambiando su posición en las coordenadas
+    //Así como tambien detecta si el jugador ya se encuentra en los limites de la pantalla y impide el movimiento
+    //Fuera de los limites
     @Override
     public void actualizar() {
         if (moverIzquierda) x -= velocidad;
@@ -81,7 +85,7 @@ public class Jugador extends Entidad {
             y = altoPantalla - alto;
         }
     }
-
+    //Logica de dibujo, disparo y reinicio del jugador
     @Override
     public void dibujar(SpriteBatch pantalla) {
         if (imagen != null) {

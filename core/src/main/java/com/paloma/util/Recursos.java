@@ -1,3 +1,4 @@
+//Importamos y configuramos clases, la lista "cargados" guarda la referencia de cualquier recurso que consuma RAM/VRAM
 package com.paloma.util;
 
 import com.badlogic.gdx.Gdx;
@@ -15,10 +16,9 @@ public final class Recursos {
 
     private static final List<Disposable> cargados = new ArrayList<>();
     private static TextureRegion pixel;
-
+    //Carga archivos de imagenes y las suaviza
     private Recursos() {
     }
-
     public static TextureRegion cargarImagen(String ruta) {
         Texture textura = new Texture(Gdx.files.internal(ruta));
         textura.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -27,7 +27,7 @@ public final class Recursos {
         region.flip(false, true);
         return region;
     }
-
+    //Genera elementos simples generados con Pixmap para lienzos virtuales, se usa principalmente en la barra de vida
     public static TextureRegion colorSolido(Color color, int ancho, int alto) {
         Pixmap pixmap = new Pixmap(ancho, alto, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);
@@ -44,7 +44,7 @@ public final class Recursos {
         }
         return pixel;
     }
-
+    //Generación de fuentes de texto
     public static BitmapFont crearFuente(int tamano) {
         BitmapFont fuente = new BitmapFont(true);
         fuente.getData().setScale(tamano / 24f);
@@ -52,7 +52,7 @@ public final class Recursos {
         cargados.add(fuente);
         return fuente;
     }
-
+    //Gestion y liberación de memoria protegiendo la estabilidad del programa y limpiando la memoria
     public static void registrar(Disposable recurso) {
         cargados.add(recurso);
     }

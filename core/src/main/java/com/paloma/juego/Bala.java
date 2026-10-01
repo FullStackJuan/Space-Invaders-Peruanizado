@@ -1,10 +1,11 @@
+//Importación de clases y recursos
 package com.paloma.juego;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.paloma.util.Recursos;
-
+//Atributos, se usa la clase entidad para decirle a la bala que herede sus elementos, uno de ellos es su posicion (x, y)
 public class Bala extends Entidad {
 
     private static TextureRegion imagenPorDefecto;
@@ -12,7 +13,7 @@ public class Bala extends Entidad {
     private final TextureRegion imagen;
     private final int velocidad;
     private boolean visible = false;
-
+    //Constructores, inicializa una nueva instacia de bullet dando velocidad, tamaño y posición
     public Bala() {
         this(null, 10);
     }
@@ -32,7 +33,7 @@ public class Bala extends Entidad {
         this.ancho = this.imagen.getRegionWidth();
         this.alto = this.imagen.getRegionHeight();
     }
-
+    //activacion y movimiento de bullet administrando sus fisicas y logicas
     public void disparar(float x, float y) {
         visible = true;
         this.x = x;
@@ -49,7 +50,7 @@ public class Bala extends Entidad {
             visible = false;
         }
     }
-
+    //Dibujado de la balla, detecta cuando sale de la pantalla y "desaparece"
     @Override
     public void dibujar(SpriteBatch pantalla) {
         if (visible) {

@@ -1,3 +1,4 @@
+//Importación de recursos necesarios
 package com.paloma.juego;
 
 import com.badlogic.gdx.graphics.Color;
@@ -6,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.paloma.Constantes;
 import com.paloma.util.Recursos;
-
 public class BarraVida implements Dibujable {
 
     private final int vidaMaxima;
@@ -19,7 +19,8 @@ public class BarraVida implements Dibujable {
     private TextureRegion imagenCorazon;
     private final Color color = new Color(0f, 1f, 0f, 1f);
     private final Color colorVacio = new Color(50 / 255f, 50 / 255f, 50 / 255f, 1f);
-
+    //Declaración de vida maxima y su estado actual, necesarios para saber si el jugador esta dentro del bucle
+    //O si hizo un "Game Over"
     public BarraVida() {
         this(3, 20, 10);
     }
@@ -38,19 +39,19 @@ public class BarraVida implements Dibujable {
             imagenCorazon = null;
         }
     }
-
+    //Reduce vida maxima en -1
     public void perderVida() {
         vidaActual = Math.max(0, vidaActual - 1);
     }
-
+    //Comprueba que la vidaActual sea estrictamente mayor que 0
     public boolean estaVivo() {
         return vidaActual > 0;
     }
-
+    //Reinicia la vida Actual a vida maxima
     public void reiniciarVida() {
         vidaActual = vidaMaxima;
     }
-
+    //Dibuja la interfaz del usuario (HUD) y le muestra la vida actual que posee
     @Override
     public void dibujar(SpriteBatch pantalla) {
         for (int i = 0; i < vidaMaxima; i++) {
